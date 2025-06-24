@@ -1,0 +1,208 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      font-size: 1rem;
+    }
+
+    .counter {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h2>Live Character Counter</h2>
+  <textarea id="textInput" placeholder="Start typing..."></textarea>
+  <div id="charCount" class="counter">Characters: 0/100</div>
+
+  <script>
+    const textInput = document.getElementById('textInput');
+    const charCount = document.getElementById('charCount');
+
+    textInput.addEventListener('input', () => {
+      const length = textInput.value.length;
+      charCount.textContent = `Characters: ${length}/100`;
+      if (length > 100) {
+        charCount.classList.add('red');
+      } else {
+        charCount.classList.remove('red');
+      }
+    });
+  </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    input {
+      width: 70%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin-top: 1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      background: #f1f1f1;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Enter a task..." />
+  <button onclick="addTask()">Add</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+
+    // Load tasks from localStorage
+    window.onload = function () {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.forEach(task => renderTask(task));
+    };
+
+    function addTask() {
+      const taskText = taskInput.value.trim();
+      if (taskText === '') return;
+      renderTask(taskText);
+      saveTask(taskText);
+      taskInput.value = '';
+    }
+
+    function renderTask(taskText) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span>${taskText}</span>
+        <button onclick="deleteTask(this)">Delete</button>
+      `;
+      taskList.appendChild(li);
+    }
+
+    function saveTask(taskText) {
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.push(taskText);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function deleteTask(btn) {
+      const li = btn.parentElement;
+      const taskText = li.querySelector('span').textContent;
+      li.remove();
+
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks = tasks.filter(task => task !== taskText);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Quote Generator</title>
+  <style>
+    body {
+      transition: background-color 0.5s ease;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    #quote {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="quote">Click the button for a quote!</div>
+  <button onclick="showQuote()">New Quote</button>
+
+  <script>
+    const quotes = [
+      "Do or do not. There is no try. – Yoda",
+      "Life is what happens when you're busy making other plans. – John Lennon",
+      "The only way to do great work is to love what you do. – Steve Jobs",
+      "Stay hungry, stay foolish. – Steve Jobs",
+      "In the middle of every difficulty lies opportunity. – Albert Einstein"
+    ];
+
+    function getRandomQuote() {
+      const index = Math.floor(Math.random() * quotes.length);
+      return quotes[index];
+    }
+
+    function getRandomColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function showQuote() {
+      const quoteText = getRandomQuote();
+      document.getElementById('quote').textContent = quoteText;
+      document.body.style.backgroundColor = getRandomColor();
+    }
+  </script>
+</body>
+</html>

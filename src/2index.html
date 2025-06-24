@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="./firebase.js" defer></script>
+  <script type="module" src="./game.js" defer></script>
+  <script type="module" src="./ranking.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <form id="user-form">
+      <input type="text" id="username" placeholder="Enter your name">
+      <input type="email" id="email" placeholder="Enter your email">
+      <button id="submit-btn">ENVIAR</button>
+    </form>
+  </div>
+  <div id="game">
+    <div id="game-form">
+      <label for="cards-number">Número de cartas (número par):</label>
+      <input type="number" id="cards-number" min="4" step="2">
+      <button id="play-btn">Jugar</button>
+    </div>
+    <div id="game-info">
+      <span id="timer">0m 0s</span>
+    </div>
+    <div id="game-board"></div>
+  </div>
+  <dialog id="modal">
+    <p>Por favor, ingresa un número válido (par y mayor que 0).</p>
+    <button id="close-modal">Cerrar</button>
+  </dialog>
+  
+    <div id="ranking">
+      <table id="ranking-table">
+        <thead>
+          <tr>
+            <th>Posició</th>
+            <th>Username</th>
+            <th>Mail</th>
+            <th>Temps</th>
+            <th>Número de cartes</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  <div id="log-out">
+    <button id="logout-btn">LOG OUT</button>
+  </div>
+</body>
+<!--<script type="module" src="ranking.js"></script> -->
+</html>

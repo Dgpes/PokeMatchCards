@@ -1,0 +1,207 @@
+/* GENERAL RESET */
+#game,
+#ranking,
+#log-out {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(0, 208, 255, 0.8), rgba(84, 68, 255, 0.8)),
+    url('./img/pokemon-koi-pond-wallpaper.webp');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+/* GAME CONTAINER */
+#game {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+#game-form label {
+  font-size: 1.2em;
+}
+
+input,
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+}
+
+button {
+  background: #ff4444;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff2222;
+  transform: scale(1.1);
+}
+
+/* GAME BOARD */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.card {
+  width: 120px;
+  height: 180px;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.6s ease;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-back {
+  background: #4e73df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+}
+
+.card-front {
+  background-size: cover;
+  background-position: center;
+  transform: rotateY(180deg);
+}
+
+/* MODAL */
+#modal {
+  padding: 20px;
+  background-color: #ff4e42;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Matched cards with green glow effect */
+.card.matched {
+  background-color: #4caf50; /* Green background */
+  box-shadow: 0 0 15px 5px rgba(76, 175, 80, 0.8); /* Green glow */
+  animation: glowPulse 1.5s infinite alternate ease-in-out;
+}
+
+/* Glowing effect animation */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 10px 3px rgba(76, 175, 80, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 20px 7px rgba(76, 175, 80, 1);
+  }
+}
+
+#ranking {
+  display: none; /* Hide it initially */
+  width: 80%;
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+#ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#ranking-table th,
+#ranking-table td {
+  padding: 12px;
+  border: 1px solid #4e73df;
+  text-align: left;
+  font-size: 1.1em;
+  color: white;
+}
+
+#ranking-table th {
+  background-color: #4e73df;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#ranking-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#ranking-table td {
+  color: #ffcc00;
+}
+
+#ranking-table td:first-child {
+  color: #ff4444; /* Highlight position column */
+}
